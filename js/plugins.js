@@ -12,7 +12,7 @@ var $plugins =
 {"name":"YEP_BaseTroopEvents","status":true,"description":"全ての敵グループに対して、\r\n毎回戦闘で発生するイベントを設定します。","parameters":{"Base Troop ID":"1"}},
 {"name":"YEP_ElementAbsorb","status":true,"description":"属性ダメージを吸収するアビリティを付与します","parameters":{"Multiple Priority":"true"}},
 {"name":"YEP_ElementReflect","status":true,"description":"指定のスキル/アイテムを跳ね返す設定を付与します","parameters":{}},
-{"name":"YEP_ExternalLinks","status":false,"description":"タイトル画面やゲーム内から、\nプレイヤーにWebページを開かせることができます","parameters":{"Home Page URL":"https://www.google.com/","Home Page Text":"Home Page","Popup Blocker Notice":"ポップアップブロックによってブロックされました"}},
+{"name":"YEP_ExternalLinks","status":true,"description":"タイトル画面やゲーム内から、\nプレイヤーにWebページを開かせることができます","parameters":{"Home Page URL":"https://sansansuzumura.booth.pm/","Home Page Text":"BOOTH","Popup Blocker Notice":"ポップアップブロックによってブロックされました"}},
 {"name":"YED_TransferStealStates","status":false,"description":"ステート受け渡しのスキル作成が可能になります。","parameters":{}},
 {"name":"ConditionallyCore","status":true,"description":"ver1.07/条件付き○○のプラグインを使用するのに、必要となる条件をまとめたベースプラグインです。","parameters":{}},
 {"name":"TargetLimitTrait","status":true,"description":"ver1.02/指定したスキルやアイテムの対象を制限する特徴を設定できるようにします。","parameters":{}},
