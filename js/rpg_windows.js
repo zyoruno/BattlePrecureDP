@@ -2607,9 +2607,9 @@ Window_Status.prototype.drawBasicInfo = function(x, y) {
     this.drawText($gameVariables.value(this._actor._actorId + 300), x+185,y+GYOU*1);//acterID+300番の変数を表示
    
 
-    this.drawItemName(equips[0], x+210, y+GYOU*1);
-    this.drawItemName(equips[1], x+290, y+GYOU*1);
-    this.drawItemName(equips[2], x+370, y+GYOU*1 ,260);
+    this.drawItemName(equips[0], x+260, y+GYOU*1);
+    this.drawItemName(equips[1], x+350, y+GYOU*1);
+    this.drawItemName(equips[2], x+420, y+GYOU*1 ,260);
 
 
 };

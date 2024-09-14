@@ -2610,7 +2610,7 @@ Game_BattlerBase.prototype.setTp = function(tp) {
 };
 
 Game_BattlerBase.prototype.maxTp = function() {
-    return 100;
+    return 200;
 };
 
 Game_BattlerBase.prototype.refresh = function() {

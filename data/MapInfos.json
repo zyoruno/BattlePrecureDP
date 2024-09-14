@@ -1,7 +1,7 @@
 [
 null,
 {"id":1,"expanded":true,"name":"バトプリ4 op","order":1,"parentId":0,"scrollX":440.44444444444446,"scrollY":398.6666666666667},
-{"id":2,"expanded":false,"name":"バトプリ4　主人公選択","order":8,"parentId":0,"scrollX":465,"scrollY":338},
+{"id":2,"expanded":false,"name":"バトプリ4　主人公選択","order":8,"parentId":0,"scrollX":465,"scrollY":335.5},
 {"id":3,"expanded":true,"name":"戦闘テストmap","order":2,"parentId":1,"scrollX":465,"scrollY":339},
 {"id":4,"expanded":false,"name":"じょるの開発部","order":3,"parentId":1,"scrollX":436.8888888888889,"scrollY":398.6666666666667},
 {"id":5,"expanded":false,"name":"バトプリ4　編成画面","order":9,"parentId":0,"scrollX":465,"scrollY":338},
@@ -11,13 +11,13 @@ null,
 null,
 {"id":10,"expanded":false,"name":"バトプリ4　メニュー画面","order":4,"parentId":0,"scrollX":465,"scrollY":338},
 null,
-{"id":12,"expanded":false,"name":"バトプリ4　シナリオ画面","order":5,"parentId":0,"scrollX":465,"scrollY":338},
+{"id":12,"expanded":false,"name":"バトプリ4　シナリオ画面","order":5,"parentId":0,"scrollX":465,"scrollY":335.5},
 null,
-{"id":14,"expanded":false,"name":"バトプリ4　ビブリーの部屋","order":6,"parentId":0,"scrollX":465,"scrollY":338},
-null,
-null,
+{"id":14,"expanded":false,"name":"バトプリ4　ビブリーの部屋","order":6,"parentId":0,"scrollX":465,"scrollY":335.5},
 null,
 null,
 null,
-{"id":20,"expanded":false,"name":"バトプリ4　劇場画面","order":7,"parentId":0,"scrollX":465,"scrollY":338}
+null,
+null,
+{"id":20,"expanded":false,"name":"バトプリ4　劇場画面","order":7,"parentId":0,"scrollX":465,"scrollY":335.5}
 ]
