@@ -3,14 +3,14 @@
 //=============================================================================
 
 /*:
- * @plugindesc (v1.2) Causa dano no alvo no efeito Flash da animação.
+ * @plugindesc (v1.4) Causa dano no alvo no efeito Flash da animação.
  * @author Moghunter
  * 
  * @help  
  * =============================================================================
- * +++ MOG - Flash Damage (v1.2) +++
+ * +++ MOG - Flash Damage (v1.4) +++
  * By Moghunter 
- * https://atelierrgss.wordpress.com/
+ * https://mogplugins.wordpress.com
  * =============================================================================
  * Causa dano no efeito Flash da animação, permitindo causar dano durante a
  * animação, o que inclui múltiplos danos na mesma animação.
@@ -25,10 +25,9 @@
  * Para causar dano no alvo é necessário que o efeito flash esteja no modo Target
  *
  * =============================================================================
- * UTILIZAÇÃO
+ * - WHAT'S  NEW (version 1.4) 
  * =============================================================================
- * (v1.2) - Correção do som do collapso ao reviver o inimigo. 
- * (v1.1) - Correção de ativar o som de colapso durante a animação.
+ * (UPD) - Compatibilidade com Battler Motion 2.0
  * 
  */
 
@@ -319,6 +318,12 @@ Sprite_Animation.prototype.startFlash = function(color, duration) {
 Sprite_Animation.prototype.executeFlashDamage = function() {
 	this._battler._flashDamage = false;
     BattleManager.invokeAction(BattleManager._subject, this._battler);
+	if (Imported.MOG_BattlerMotion && BattleManager._action.item()) {
+		var type = BattleManager._action.item().damage.type
+		if (type == 1 || type == 5) {
+	        this._battler.setBmotionDamageApply(this._battler);
+		};
+	};
 	this._battler._flashDamage = true;
 };	
 
