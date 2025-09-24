@@ -1,131 +1,136 @@
-﻿//=============================================================================
+//=============================================================================
 // Yanfly Engine Plugins - Auto Passive States
 // YEP_AutoPassiveStates.js
 //=============================================================================
- 
+
 var Imported = Imported || {};
 Imported.YEP_AutoPassiveStates = true;
- 
+
 var Yanfly = Yanfly || {};
 Yanfly.APS = Yanfly.APS || {};
-Yanfly.APS.version = 1.14;
- 
+Yanfly.APS.version = 1.17;
+
 //=============================================================================
- /*:
- * @plugindesc v1.14 This plugin allows for some states to function as
- * passives for actors, enemies, skills, and equips.
+ /*:ja
+ * @plugindesc v1.17 アクター、職業、スキル、武器、防具、敵にパッシブステートを設定できます。
  * @author Yanfly Engine Plugins
  *
- * @param ---Basic---
+ * @param ---基本---
  * @default
  *
  * @param Actor Passives
- * @parent ---Basic---
- * @desc These states will always appear on actors as passives.
- * Place a space in between each state ID.
+ * @text アクターのパッシブ
+ * @parent ---基本---
+ * @desc  アクターにパッシブステートを割り当てます。
+ * 各ステートIDの間にはスペースを入れてください。
  * @default 0
  *
  * @param Enemy Passives
- * @parent ---Basic---
- * @desc These states will always appear on enemies as passives.
- * Place a space in between each state ID.
+ * @text 敵のパッシブ
+ * @parent ---基本---
+ * @desc 敵にパッシブステートを割り当てます。
+ * 各ステートIDの間にはスペースを入れてください。
  * @default 0
  *
  * @param Global Passives
- * @parent ---Basic---
- * @desc These states will always appear on all battlers as passives.
- * Place a space in between each state ID.
+ * @text バトラーのパッシブ
+ * @parent ---基本---
+ * @desc バトラーにパッシブステートを割り当てます。
+ * 各ステートIDの間にはスペースを入れてください。
  * @default 0
  *
- * @param ---List---
- * @default ...Requires RPG Maker MV 1.5.0+...
+ * @param ---リスト---
+ * @default
  *
  * @param Actor Passives List
- * @parent ---List---
+ * @text アクターのパッシブ一覧
+ * @parent ---リスト---
  * @type state[]
- * @desc These states will always appear on actors as passives.
- * Use with RPG Maker MV 1.5.0+.
+ * @desc アクターにパッシブステートを割り当てます。
+ * RPG Maker MV 1.5.0以降で使用してください。
  * @default []
  *
  * @param Enemy Passives List
- * @parent ---List---
+ * @text 敵のパッシブ一覧
+ * @parent ---リスト---
  * @type state[]
- * @desc These states will always appear on enemies as passives.
- * Use with RPG Maker MV 1.5.0+.
+ * @desc 敵にパッシブステートを割り当てます。
+ * RPG Maker MV 1.5.0以降で使用してください。
  * @default []
  *
  * @param Global Passives List
- * @parent ---List---
+ * @text バトラーのパッシブ一覧
+ * @parent ---リスト---
  * @type state[]
- * @desc These states will always appear on all battlers as passives.
- * Use with RPG Maker MV 1.5.0+.
+ * @desc バトラーにパッシブステートを割り当てます。
+ * RPG Maker MV 1.5.0以降で使用してください。
  * @default []
  *
  * @help
- * ============================================================================
- * Introduction
- * ============================================================================
+ * 翻訳:ムノクラ
+ * https://fungamemake.com/
+ * https://twitter.com/munokura/
  *
- * Passive states are states that are automatically active. You can think of
- * them as an extension of traits but with more flexibility. They will always
- * be there as long as the actor or enemy has auto passive state notetags.
+ * ===========================================================================
+ * 導入
+ * ===========================================================================
  *
- * ============================================================================
- * Notetags
- * ============================================================================
+ * パッシブステートは、操作を行わなくても有効になっているステートのことです。
+ * 活用することで、より柔軟な特性の拡張が可能になります。
+ * 味方や敵がパッシブステートの設定をすると、
+ * そのステートは常に有効な状態となります。
  *
- * For those who would like to allocate passive states to your battlers, use
- * the notetags below:
+ * ===========================================================================
+ * メモタグ
+ * ===========================================================================
  *
- * Actor, Class, Skills, Weapon, Armor, Enemy Notetags:
+ * 以下のメモタグを使って、バトラーにパッシブステートを割り当ててください。
+ *
+ * アクター、職業、スキル、武器、防具、敵のメモタグ
  *   <Passive State: x>
  *   <Passive State: x, x, x>
- *   This will allow the actor or enemy to have state x as a passive state.
- *   If placed inside a weapon or armor notebox, the user will have that
- *   passive state.
+ *   アクターや敵に、常に x という状態が付与されます。メモタグを
+ *   武器や防具内のメモ欄に記入すれば、その持ち主に対して有効になります。
  *
  *   <Passive State: x to y>
- *   This will add the states x through y (in a sequence) for the actor or
- *   enemy to have as a passive state. If placed inside a weapon or armor
- *   notebox, the user will have that passive state.
+ *   アクターや敵に、x から y までのステートを付与します。メモタグを
+ *   武器や防具内のメモ欄に記入すれば、その持ち主に対して有効になります。
  *
- * For those who don't want their passive states to always be on, you can use
- * the following notetags to introduce conditions for your passive states. All
- * conditions must be fulfilled in order for the passive state to appear.
+ * パッシブステートを常にオンにしたくない場合、
+ * 発動条件を以下のメモタグで調整できます。
+ * 全ての条件が満たされなければ、パッシブステートを有効になりません。
  *
- * State Notetags:
+ * ステートのメモタグ
  *   <Passive Condition: HP Above x%>
  *   <Passive Condition: HP Below x%>
  *   <Passive Condition: MP Above x%>
  *   <Passive Condition: MP Below x%>
- *   If the user's HP or MP is above/below x% of the MaxHP or MaxMP, this
- *   condition will be met for the passive state to appear.
+ *   使用者のHPまたはMPが、MaxHPまたはMaxMPのx%を上回る/下回る場合、
+ *   パッシブステートが発動します
  *
  *   <Passive Condition: Stat Above x>
  *   <Passive Condition: Stat Below x>
- *   Replace 'stat' with 'HP', 'MP', 'TP', 'MAXHP', 'MAXMP', 'ATK', 'DEF',
- *   'MAT', 'MDF', 'AGI', 'LUK'. If the above stat is above/below x, then the
- *   condition is met for the passive state to appear.
+ *   'stat'を 'HP'、 'MP'、 'TP'、 'MAXHP'、 'MAXMP'、 'ATK'、 'DEF'、
+ *    'MAT'、 'MDF'、 'AGI'、 'LUK'に書き換えてください。
+ *   上記のステータス値 x が上回る/下回る場合、パッシブステートが発動します。
  *
  *   <Passive Condition: Switch x ON>
  *   <Passive Condition: Switch x OFF>
- *   If switch x is either ON/OFF, then the condition is met for the passive
- *   state to appear.
+ *   スイッチ x がON/OFFである場合、パッシブステートが発動します。
  *
  *   <Passive Condition: Variable x Above y>
  *   <Passive Condition: Variable x Below y>
- *   Replace x with the variable you wish to check to see if it's above/below
- *   y, then the condition is met for the passive state to appear.
+ *   x y を変数に書き換えてください。
+ *   数値が上回る/下回る場合、パッシブステートが発動します。
  *
- * ============================================================================
- * Lunatic Mode - Conditional Passives
- * ============================================================================
+ * ===========================================================================
+ * ルナティックモード - パッシブ条件
+ * ===========================================================================
  *
- * For those who understand a bit of JavaScript and would like for their
- * passive states to appear under specific conditions, you can use this notetag
- * to accomplish conditional factors.
+ * JavaScriptを使っての条件判定でパッシブステートが発動させたい場合、
+ * 下記メモタグで条件を設定できます。
  *
- * State Notetags:
+ * ステートのメモタグ
  *   <Custom Passive Condition>
  *   if (user.hp / user.mhp <= 0.25) {
  *     condition = true;
@@ -133,19 +138,31 @@ Yanfly.APS.version = 1.14;
  *     condition = false;
  *   }
  *   </Custom Passive Condition>
- *   This enables you to input conditions to be met in order for the passive
- *   state to appear. If the 'condition' variable returns true, the passive
- *   state will appear. If the 'condition' returns false, it won't appear. If
- *   condition is not defined, it will return true and the passive state will
- *   appear on the battler.
- *   * Note: All non-custom passive conditions must be met before this one can
- *   be fulfilled and allow the custom condition to appear.
- *   * Note: If you decide to use a condition that requires the actor to have a
- *   particular state, it cannot be a passive state to prevent infinite loops.
  *
- * ============================================================================
+ * 上記でパッシブステートを発動する条件を設定できます。
+ * 'condition'変数がtrueを返すと、パッシブステートが発動されます。
+ * 'condition'がfalseを返すと、発動されません。
+ * 条件が定義されていない場合、trueが返され、
+ * パッシブステートがバトラーに発動します。
+ *   注:この条件を満たすには、
+ *      カスタム以外の条件が全て満たされている必要があります。
+ *   注:アクターに特定のステートを要求する条件は、
+ *      無限ループを防ぐために使用できません。
+ *
+ * ===========================================================================
  * Changelog
- * ============================================================================
+ * ===========================================================================
+ *
+ * Version 1.17:
+ * - Optimization update. There should be less lag spikes if there are more
+ * passive conditions present on a battler.
+ *
+ * Version 1.16:
+ * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
+ * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
+ *
+ * Version 1.15:
+ * - Bug fixed that made global passives not apply to actors.
  *
  * Version 1.14:
  * - Updated for RPG Maker MV version 1.5.0.
@@ -205,11 +222,11 @@ Yanfly.APS.version = 1.14;
  * - Finished plugin!
  */
 //=============================================================================
- 
+
 //=============================================================================
 // Parameter Variables
 //=============================================================================
- 
+
 Yanfly.SetupParameters = function() {
   Yanfly.Parameters = PluginManager.parameters('YEP_AutoPassiveStates');
   Yanfly.Param = Yanfly.Param || {};
@@ -250,8 +267,8 @@ Yanfly.SetupParameters = function() {
   for (var i = 0; i < data.length; ++i) {
     var stateId = parseInt(data[i]);
     if (stateId <= 0) continue;
-    if (!Yanfly.Param.APSEnemyPas.contains(stateId)) {
-      Yanfly.Param.APSEnemyPas.push(stateId);
+    if (!Yanfly.Param.APSActorPas.contains(stateId)) {
+      Yanfly.Param.APSActorPas.push(stateId);
     }
     if (!Yanfly.Param.APSEnemyPas.contains(stateId)) {
       Yanfly.Param.APSEnemyPas.push(stateId);
@@ -259,11 +276,11 @@ Yanfly.SetupParameters = function() {
   }
 };
 Yanfly.SetupParameters();
- 
+
 //=============================================================================
 // DataManager
 //=============================================================================
- 
+
 Yanfly.APS.DataManager_isDatabaseLoaded = DataManager.isDatabaseLoaded;
 DataManager.isDatabaseLoaded = function() {
   if (!Yanfly.APS.DataManager_isDatabaseLoaded.call(this)) return false;
@@ -279,19 +296,19 @@ DataManager.isDatabaseLoaded = function() {
   }
   return true;
 };
- 
+
 DataManager.processAPSNotetags1 = function(group, inheritArray) {
   var note1 = /<(?:PASSIVE STATE):[ ]*(\d+(?:\s*,\s*\d+)*)>/i;
   var note2 = /<(?:PASSIVE STATE):[ ](\d+)[ ](?:THROUGH|to)[ ](\d+)>/i;
   for (var n = 1; n < group.length; n++) {
     var obj = group[n];
     var notedata = obj.note.split(/[\r\n]+/);
- 
+
     obj.passiveStates = [];
     if (inheritArray) {
       obj.passiveStates = obj.passiveStates.concat(inheritArray);
     }
- 
+
     for (var i = 0; i < notedata.length; i++) {
       var line = notedata[i];
       if (line.match(note1)) {
@@ -305,7 +322,7 @@ DataManager.processAPSNotetags1 = function(group, inheritArray) {
     }
   }
 };
- 
+
 DataManager.processAPSNotetags2 = function(group) {
   var note1a = /<(?:PASSIVE CONDITION):[ ](.*)[ ](?:ABOVE)[ ](\d+)([%％])>/i;
   var note1b = /<(?:PASSIVE CONDITION):[ ](.*)[ ](?:BELOW)[ ](\d+)([%％])>/i;
@@ -317,11 +334,11 @@ DataManager.processAPSNotetags2 = function(group) {
   for (var n = 1; n < group.length; n++) {
     var obj = group[n];
     var notedata = obj.note.split(/[\r\n]+/);
- 
+
     obj.passiveCondition = '';
     obj.passiveConditionEval = '';
     var evalMode = 'none';
- 
+
     for (var i = 0; i < notedata.length; i++) {
       var line = notedata[i];
       if (line.match(note1a)) {
@@ -364,9 +381,14 @@ DataManager.processAPSNotetags2 = function(group) {
         obj.passiveConditionEval = obj.passiveConditionEval + line + '\n';
       }
     }
+
+    obj.passiveCondition = new Function('condition','a','user','subject','b',
+      'target','s','v', obj.passiveCondition + '\nreturn condition;');
+    obj.passiveConditionEval = new Function('condition','a','user','subject',
+      'b','target','s','v', obj.passiveConditionEval + '\nreturn condition;');
   }
 };
- 
+
 DataManager.getPassiveConditionParam = function(string) {
     string = string.toUpperCase();
     var text = 'user.';
@@ -386,7 +408,7 @@ DataManager.getPassiveConditionParam = function(string) {
     }
     return text;
 };
- 
+
 DataManager.getPassiveConditionParamRate = function(string) {
     string = string.toUpperCase();
     var text = '0';
@@ -394,17 +416,17 @@ DataManager.getPassiveConditionParamRate = function(string) {
     if (['MP'].contains(string)) return 'user.mpRate()';
     return text;
 };
- 
+
 //=============================================================================
 // Game_BattlerBase
 //=============================================================================
- 
+
 Yanfly.APS.Game_BattlerBase_refresh = Game_BattlerBase.prototype.refresh;
 Game_BattlerBase.prototype.refresh = function() {
     this._passiveStatesRaw = undefined;
     Yanfly.APS.Game_BattlerBase_refresh.call(this);
 };
- 
+
 Yanfly.APS.Game_BattlerBase_states = Game_BattlerBase.prototype.states;
 Game_BattlerBase.prototype.states = function() {
     var array = Yanfly.APS.Game_BattlerBase_states.call(this);
@@ -412,14 +434,14 @@ Game_BattlerBase.prototype.states = function() {
     this.sortPassiveStates(array);
     return array;
 };
- 
+
 Yanfly.APS.Game_BattlerBase_isStateAffected =
     Game_BattlerBase.prototype.isStateAffected;
 Game_BattlerBase.prototype.isStateAffected = function(stateId) {
     if (this.isPassiveStateAffected(stateId)) return true;
     return Yanfly.APS.Game_BattlerBase_isStateAffected.call(this, stateId);
 };
- 
+
 Game_BattlerBase.prototype.passiveStates = function() {
     var array = [];
     var raw = this.passiveStatesRaw();
@@ -430,12 +452,12 @@ Game_BattlerBase.prototype.passiveStates = function() {
     }
     return array;
 };
- 
+
 Game_BattlerBase.prototype.passiveStatesRaw = function() {
     var array = [];
     return array.filter(Yanfly.Util.onlyUnique);
 };
- 
+
 Game_BattlerBase.prototype.getPassiveStateData = function(obj) {
     if (!obj) return [];
     if (!obj.passiveStates) return [];
@@ -455,14 +477,14 @@ Game_BattlerBase.prototype.getPassiveStateData = function(obj) {
     }
     return array;
 };
- 
+
 Game_BattlerBase.prototype.addEquipBattleTestSkillPassives = function(obj) {
   if (!Imported.YEP_EquipBattleSkills) return [];
   if (!DataManager.isBattleTest()) return [];
   if (!DataManager.isSkill(obj)) return [];
   return obj.equipStates;
 };
- 
+
 Game_BattlerBase.prototype.meetPassiveStateCondition = function(stateId) {
     this._checkPassiveStateCondition = this._checkPassiveStateCondition || [];
     if (this._checkPassiveStateCondition.contains(stateId)) return false;
@@ -474,7 +496,7 @@ Game_BattlerBase.prototype.meetPassiveStateCondition = function(stateId) {
     if (state.passiveConditionEval === '') return true;
     return this.passiveStateConditionEval(state);
 };
- 
+
 Game_BattlerBase.prototype.passiveStateConditions = function(state) {
   this._checkPassiveStateCondition = this._checkPassiveStateCondition || [];
   this._checkPassiveStateCondition.push(state.id);
@@ -488,7 +510,8 @@ Game_BattlerBase.prototype.passiveStateConditions = function(state) {
   var v = $gameVariables._data;
   var code = state.passiveCondition;
   try {
-    eval(code);
+    condition = state.passiveCondition.call(this, condition, a, user, subject,
+      b, target, s, v);
   } catch (e) {
     Yanfly.Util.displayError(e, code, 'PASSIVE STATE CUSTOM CONDITION ERROR');
   }
@@ -496,7 +519,7 @@ Game_BattlerBase.prototype.passiveStateConditions = function(state) {
   this._checkPassiveStateCondition.splice(index, 1);
   return condition;
 };
- 
+
 Game_BattlerBase.prototype.passiveStateConditionEval = function(state) {
   this._checkPassiveStateCondition = this._checkPassiveStateCondition || [];
   this._checkPassiveStateCondition.push(state.id);
@@ -510,7 +533,8 @@ Game_BattlerBase.prototype.passiveStateConditionEval = function(state) {
   var v = $gameVariables._data;
   var code = state.passiveConditionEval;
   try {
-    eval(code);
+    condition = state.passiveConditionEval.call(this, condition, a, user,
+      subject, b, target, s, v);
   } catch (e) {
     Yanfly.Util.displayError(e, code, 'PASSIVE STATE CUSTOM CONDITION ERROR');
   }
@@ -518,7 +542,7 @@ Game_BattlerBase.prototype.passiveStateConditionEval = function(state) {
   this._checkPassiveStateCondition.splice(index, 1);
   return condition;
 };
- 
+
 Game_BattlerBase.prototype.sortPassiveStates = function(array) {
     array.sort(function(a, b) {
       var p1 = a.priority;
@@ -527,31 +551,31 @@ Game_BattlerBase.prototype.sortPassiveStates = function(array) {
       return a - b;
     });
 };
- 
+
 Game_BattlerBase.prototype.isPassiveStateAffected = function(stateId) {
     return this.passiveStatesRaw().contains(stateId);
 };
- 
+
 //=============================================================================
 // Game_Battler
 //=============================================================================
- 
+
 Yanfly.APS.Game_Battler_isStateAddable = Game_Battler.prototype.isStateAddable;
 Game_Battler.prototype.isStateAddable = function(stateId) {
     if (this.isPassiveStateAffected(stateId)) return false;
     return Yanfly.APS.Game_Battler_isStateAddable.call(this, stateId);
 };
- 
+
 Yanfly.APS.Game_Battler_removeState = Game_Battler.prototype.removeState;
 Game_Battler.prototype.removeState = function(stateId) {
     if (this.isPassiveStateAffected(stateId)) return;
     Yanfly.APS.Game_Battler_removeState.call(this, stateId);
 };
- 
+
 //=============================================================================
 // Game_Actor
 //=============================================================================
- 
+
 Game_Actor.prototype.passiveStatesRaw = function() {
     if (this._passiveStatesRaw !== undefined) return this._passiveStatesRaw;
     var array = Game_BattlerBase.prototype.passiveStatesRaw.call(this);
@@ -568,23 +592,23 @@ Game_Actor.prototype.passiveStatesRaw = function() {
     this._passiveStatesRaw = array.filter(Yanfly.Util.onlyUnique)
     return this._passiveStatesRaw;
 };
- 
+
 Yanfly.APS.Game_Actor_learnSkill = Game_Actor.prototype.learnSkill;
 Game_Actor.prototype.learnSkill = function(skillId) {
     Yanfly.APS.Game_Actor_learnSkill.call(this, skillId);
     this._passiveStatesRaw = undefined;
 };
- 
+
 Yanfly.APS.Game_Actor_forgetSkill = Game_Actor.prototype.forgetSkill;
 Game_Actor.prototype.forgetSkill = function(skillId) {
     Yanfly.APS.Game_Actor_forgetSkill.call(this, skillId);
     this._passiveStatesRaw = undefined;
 };
- 
+
 //=============================================================================
 // Game_Enemy
 //=============================================================================
- 
+
 Game_Enemy.prototype.passiveStatesRaw = function() {
     if (this._passiveStatesRaw !== undefined) return this._passiveStatesRaw;
     var array = Game_BattlerBase.prototype.passiveStatesRaw.call(this);
@@ -596,7 +620,7 @@ Game_Enemy.prototype.passiveStatesRaw = function() {
     this._passiveStatesRaw = array.filter(Yanfly.Util.onlyUnique)
     return this._passiveStatesRaw;
 };
- 
+
 if (!Game_Enemy.prototype.skills) {
     Game_Enemy.prototype.skills = function() {
       var skills = []
@@ -607,11 +631,11 @@ if (!Game_Enemy.prototype.skills) {
       return skills;
     }
 };
- 
+
 //=============================================================================
 // Game_Unit
 //=============================================================================
- 
+
 Game_Unit.prototype.refreshMembers = function() {
     var group = this.allMembers();
     var length = group.length;
@@ -620,48 +644,49 @@ Game_Unit.prototype.refreshMembers = function() {
       if (member) member.refresh();
     }
 };
- 
+
 Game_Unit.prototype.allMembers = function() {
     return this.members();
 };
- 
+
 //=============================================================================
 // Game_Player
 //=============================================================================
- 
+
 Yanfly.APS.Game_Player_refresh = Game_Player.prototype.refresh;
 Game_Player.prototype.refresh = function() {
     $gameParty.refreshMembers();
     Yanfly.APS.Game_Player_refresh.call(this);
 };
- 
+
 //=============================================================================
 // Utilities
 //=============================================================================
- 
+
 Yanfly.Util = Yanfly.Util || {};
- 
+
 Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
+  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();
     }
   }
 };
- 
+
 Yanfly.Util.getRange = function(n, m) {
     var result = [];
     for (var i = n; i <= m; ++i) result.push(i);
     return result;
 };
- 
+
 Yanfly.Util.onlyUnique = function(value, index, self) {
     return self.indexOf(value) === index;
 };
- 
+
 //=============================================================================
 // End of File
 //=============================================================================
