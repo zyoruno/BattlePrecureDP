@@ -2604,7 +2604,7 @@ Window_Status.prototype.drawBasicInfo = function(x, y) {
     this.drawActorName(this._actor, x, y);
     this.drawActorClass(this._actor, x+190, y);
     this.drawActorNickname(this._actor, x+60, y+GYOU * 1);
-    this.drawText($gameVariables.value(this._actor._actorId + 300), x+185,y+GYOU*1);//acterID+300番の変数を表示
+    this.drawText($gameVariables.value(this._actor._actorId + 300), x+185,y+GYOU*1);//acterID+300番の変数を表示Class
    
 
     this.drawItemName(equips[0], x+260, y+GYOU*1);
