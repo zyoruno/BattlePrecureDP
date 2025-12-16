@@ -45,7 +45,7 @@ Imported['ShowStateTurns'] = 1.00;
         		}else{
         			turns = actor._buffTurns[buffIds[i-stateIds.length]];
         		}
-        		if (turns > 0){ this.drawText( turns, xx, y + 2, w, 'right') }
+        		if (turns > 0){ this.drawText( turns, xx, y + 12, w, 'right') }
         	}
     	}
 	};
