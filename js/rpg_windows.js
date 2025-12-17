@@ -2609,7 +2609,7 @@ Window_Status.prototype.drawBasicInfo = function(x, y) {
 
     this.drawItemName(equips[0], x+260, y+GYOU*1);
     this.drawItemName(equips[1], x+330, y+GYOU*1);
-    this.drawItemName(equips[2], x+400, y+GYOU*1 ,260);
+    this.drawItemName(equips[2], x+400, y+GYOU*1 ,360);
 
 
 };
