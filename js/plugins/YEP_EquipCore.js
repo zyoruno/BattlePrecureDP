@@ -732,11 +732,11 @@ Game_Interpreter.prototype.command319 = function() {
 //=============================================================================
 
 Window_EquipCommand.prototype.windowWidth = function() {
-    return 408;
+    return 204;
 };
 
 Window_EquipCommand.prototype.maxCols = function() {
-    return 2;//装備画面のコマンド横幅
+    return 1;//装備画面のコマンド横幅
 };
 
 Window_EquipCommand.prototype.windowHeight = function() {
@@ -744,7 +744,7 @@ Window_EquipCommand.prototype.windowHeight = function() {
 };
 
 Window_EquipCommand.prototype.numVisibleRows = function() {
-    return 2;//装備画面のコマンド縦幅
+    return 3;//装備画面のコマンド縦幅
 };
 
 Window_EquipCommand.prototype.itemTextAlign = function() {
@@ -763,7 +763,7 @@ Window_EquipCommand.prototype.addCustomCommand = function() {
 };
 
 Window_EquipCommand.prototype.addFinishCommand = function() {
-    this.addCommand(Yanfly.Param.EquipFinishCmd, 'cancel');
+    //this.addCommand(Yanfly.Param.EquipFinishCmd, 'cancel');
 };
 
 //=============================================================================
