@@ -51,6 +51,7 @@ var $plugins =
 {"name":"Torigoya_SkillChangeTo","status":true,"description":"スキル変化条件設定さん for MV","parameters":{}},
 {"name":"Torigoya_AddStateSkill","status":true,"description":"スキル使用時に使用者にステートを追加/削除できるようにします","parameters":{}},
 {"name":"Torigoya_MaxSlipDamageSetting","status":true,"description":"敵のスリップダメージ上限設定プラグイン (v.1.0.0)","parameters":{}},
+{"name":"Torigoya_AutoItems","status":true,"description":"ダメージ時自動アイテム/スキル使用さん","parameters":{"Enable Switch ID":"0"}},
 {"name":"Torigoya_QuickSkill","status":false,"description":"選択するとターンを消費せずに即発動するスキルを追加します。","parameters":{"■ 上級者向け設定":"","Recalc Action Time Mode":"なし"}},
 {"name":"animatedSVEnemies","status":true,"description":"Version: 1.15.5.1 - The Re-Remake\n- Lets enemies be animated!","parameters":{"Debug":"true","No Movement":"false","Enemies Celebrate":"true","SV Enemies Collapse":"false","Static Enemies Breathe":"false","AGI Effects Breathing":"true","Scale Statics by Distance":"true","Damage Slows Down Breathing":"true"}},
 {"name":"Saba_Performance","status":false,"description":"まだテスト版です。OFFにする場合は 0 を入力してください","parameters":{"notDrawAtBitmapSnap":"1","recycleCanvas":"0","skipSnapForBackgroundByNewGame":"0","skipSnapForBackgroundByMapChange":"0","usePixiSpriteToDrawWindow_Base":"1","useFilterToChangePictureTone":"1","reduceWindowInitializeProcess":"1","alternateBitmapClearMethod":"0","usePixiSpriteToDrawIcon":"1","usePixiSpriteToDrawFace":"1","usePixiSpriteToDrawCharacter":"1","usePixiGraphicsToDrawMenuBg":"0","skipUnnecessaryRefresh":"1","lazyInitializationBitmapAtSprite_Timer":"0","lazyInitializationWeather":"0","lazyCreationWindow_MapName":"0","lazyCreationWindow_ScrollText":"0","useSpriteToDrawSprite_Destination":"0","skipWindow_CommandFirstCreateContents":"1","useDefaultTextColor":"1","reduceLoadingGlobalInfo":"0","notLoadingVolumeZeroAudio":"1","usePixiByWindow_BattleLogBg":"1"}},
@@ -69,5 +70,5 @@ var $plugins =
 {"name":"CounterExtend","status":true,"description":"反撃拡張プラグイン","parameters":{"PayCounterCost":"false","FailureCostShortage":"false","UsingForceAction":"true","EraseStateTiming":"2"}},
 {"name":"中央揃え","status":true,"description":"メッセージボックスの文字を中央揃い、右揃いにするプラグインです。","parameters":{}},
 {"name":"FTKR_AutoInvokeSkill","status":false,"description":"v1.3.2 特定条件で自動でスキルを発動させるプラグイン","parameters":{}},
-{"name":"NRP_DeadSkill","status":false,"description":"v1.042 戦闘不能時にスキルを発動します。","parameters":{"SelfStatePlusTurn":"false","AutoRemoveState":"true"}}
+{"name":"MPI_AnimationOverPictures","status":true,"description":"アニメーションを、ピクチャより前に表示します。","parameters":{"表示切替用スイッチ番号":"13"}}
 ];

@@ -350,3 +350,4 @@ Imported['PhaseSkillTrait'] = 1.02;
 		_SaEPS_GBattler_useItem.call(this,item);
 	};
 }());
+
