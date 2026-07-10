@@ -509,7 +509,7 @@ Window_Base.prototype.drawActorClass = function(actor, x, y, width) {
 };
 
 Window_Base.prototype.drawActorNickname = function(actor, x, y, width) {
-    width = width || 170;//270
+    width = width || 400;//文字幅
     this.resetTextColor();
     this.drawText(actor.nickname(), x, y, width);
 };
@@ -2597,19 +2597,21 @@ Window_Status.prototype.drawBasicInfo = function(x, y) {
 
     
     this.changeTextColor(this.systemColor());　
-    this.drawText('COST', x, y + GYOU * 1); 
-    this.drawText('進化', x+125, y + GYOU * 1); 
+    this.drawText('Cost', x, y + GYOU * 1); 
+    this.drawText('Tier', x+125, y + GYOU * 1); 
+    this.drawText('Rank', x+250, y + GYOU * 1); 
     this.resetTextColor(); 
 
     this.drawActorName(this._actor, x, y);
     this.drawActorClass(this._actor, x+190, y);
     this.drawActorNickname(this._actor, x+60, y+GYOU * 1);
-    this.drawText($gameVariables.value(this._actor._actorId + 300), x+185,y+GYOU*1);//acterID+300番の変数を表示Class
+    this.drawText($gameVariables.value(this._actor._actorId + 300), x+310,y+GYOU*1);//acterID+300番の変数を表示Class
    
 
-    this.drawItemName(equips[0], x+260, y+GYOU*1);
-    this.drawItemName(equips[1], x+330, y+GYOU*1);
-    this.drawItemName(equips[2], x+400, y+GYOU*1 ,360);
+    this.drawItemName(equips[0], x+390, y+GYOU*1);
+    this.drawItemName(equips[1], x+460, y+GYOU*1);
+    this.drawItemName(equips[2], x+560, y+GYOU*1 ,340);//オリジン表示
+
 
 
 };
