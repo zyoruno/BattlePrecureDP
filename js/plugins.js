@@ -70,5 +70,6 @@ var $plugins =
 {"name":"CounterExtend","status":true,"description":"反撃拡張プラグイン","parameters":{"PayCounterCost":"false","FailureCostShortage":"false","UsingForceAction":"true","EraseStateTiming":"2"}},
 {"name":"中央揃え","status":true,"description":"メッセージボックスの文字を中央揃い、右揃いにするプラグインです。","parameters":{}},
 {"name":"FTKR_AutoInvokeSkill","status":false,"description":"v1.3.2 特定条件で自動でスキルを発動させるプラグイン","parameters":{}},
-{"name":"MPI_AnimationOverPictures","status":true,"description":"アニメーションを、ピクチャより前に表示します。","parameters":{"表示切替用スイッチ番号":"13"}}
+{"name":"MPI_AnimationOverPictures","status":true,"description":"アニメーションを、ピクチャより前に表示します。","parameters":{"表示切替用スイッチ番号":"13"}},
+{"name":"FPSLimit","status":true,"description":"Limits game refresh rate","parameters":{"FPS Limit":"60"}}
 ];
