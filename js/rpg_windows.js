@@ -2795,14 +2795,14 @@ Window_Status.prototype.drawParameters = function(x, y) {
 
 //ここから5行目
 //アクセ一覧
-        this.drawItemName(equips[11], x+610, y+GYOU*0);
-        this.drawItemName(equips[12], x+610, y+GYOU*1);
-        this.drawItemName(equips[13], x+610, y+GYOU*2);
-        this.drawItemName(equips[14], x+610, y+GYOU*3);
-        this.drawItemName(equips[15], x+610, y+GYOU*4);
-        this.drawItemName(equips[16], x+610, y+GYOU*5);
-        this.drawItemName(equips[17], x+610, y+GYOU*6);
-        this.drawItemName(equips[18], x+610, y+GYOU*7);
+        this.drawItemName(equips[11], x+610, y+GYOU*0,500);
+        this.drawItemName(equips[12], x+610, y+GYOU*1,500);
+        this.drawItemName(equips[13], x+610, y+GYOU*2,500);
+        this.drawItemName(equips[14], x+610, y+GYOU*3,500);
+        this.drawItemName(equips[15], x+610, y+GYOU*4,500);
+        this.drawItemName(equips[16], x+610, y+GYOU*5,500);
+        this.drawItemName(equips[17], x+610, y+GYOU*6,500);
+        this.drawItemName(equips[18], x+610, y+GYOU*7,500);
 
 
 };
